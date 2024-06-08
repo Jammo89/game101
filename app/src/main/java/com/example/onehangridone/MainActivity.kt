@@ -32,6 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.onehangridone.components.AppTextFieldApp
 import com.example.onehangridone.ui.theme.OneHangridOneTheme
+import com.example.onehangridone.view.AddPlayer
+import com.example.onehangridone.view.AppTextField
 import com.example.onehangridone.view.LazyColumn101
 import com.example.onehangridone.viewes.HeaderApp
 
@@ -82,6 +84,8 @@ class MainActivity : ComponentActivity() {
                                 ),
                                 horizontalArrangement = Arrangement.Center
                             ) {
+
+
                                 AddPlayer(
                                     addPlayer = {
                                         listPlayer.add(playerState)
@@ -103,21 +107,24 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun AddPlayer(
-    addPlayer: () -> Unit
+fun AccountСalc(
+    countClick: Int,
+    click: Boolean,
+    textValue: String
+
 ) {
 
-    Button(
-        onClick = {
-            addPlayer()
-        }, modifier = Modifier
-            .height(64.dp)
-            .width(150.dp)
-    ) {
-        Text(text = "Добавить игрока", textAlign = TextAlign.Center)
+    var text = textValue
+
+    if (click == false) {
+        countClick
+    } else {
+        TextField(value = textValue, onValueChange = {
+            text = it
+        })
+
 
     }
+
+
 }
-
-
-

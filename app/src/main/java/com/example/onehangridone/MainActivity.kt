@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.onehangridone.components.AppTextFieldApp
 import com.example.onehangridone.ui.theme.OneHangridOneTheme
 import com.example.onehangridone.view.LazyColumn101
 import com.example.onehangridone.viewes.HeaderApp
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             OneHangridOneTheme {
 
-                val listP = listOf<String>("Миша", "Юля", "Рустик", "Наташа", "Диана")
+               // val listP = listOf<String>("Миша", "Юля", "Рустик", "Наташа", "Диана")
 
                 val listPlayer = remember {
                     mutableListOf<String>()
@@ -88,7 +89,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 )
                                 Box(modifier = Modifier.padding(start = 10.dp))
-                                AppTextField(textValue = playerState, addText = {
+                                AppTextFieldApp(textValue = playerState, addText = {
                                     playerState = it
                                 })
                             }
@@ -119,37 +120,4 @@ fun AddPlayer(
 }
 
 
-@Composable
-fun AppTextField(
-    textValue: String,
-    addText: (String) -> Unit
-) {
-    TextField(
-        value = textValue,
-        onValueChange = { addText(it) }
-    )
 
-}
-
-@Composable
-fun AccountСalc(
-    countClick: Int,
-    click: Boolean,
-    textValue: String
-
-) {
-
-    var text = textValue
-
-    if (click == false) {
-        countClick
-    } else {
-        TextField(value = textValue, onValueChange = {
-            text = it
-        })
-
-
-    }
-
-
-}

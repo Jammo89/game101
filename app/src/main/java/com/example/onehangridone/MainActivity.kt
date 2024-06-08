@@ -25,12 +25,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-
 import androidx.compose.ui.Modifier
-
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.onehangridone.components.AppTextFieldApp
 import com.example.onehangridone.ui.theme.OneHangridOneTheme
 import com.example.onehangridone.view.AddPlayer
 import com.example.onehangridone.view.AppTextField
@@ -53,9 +49,6 @@ class MainActivity : ComponentActivity() {
                     mutableStateOf("")
                 }
 
-                val countPlayer by remember {
-                    mutableStateOf(0)
-                }
 
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -72,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
                             LazyColumn101(
                                 listPlayer = listPlayer,
-                                countPlayer = countPlayer
+                               // countPlayer = countPlayer
                             )
 
 
@@ -93,7 +86,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 )
                                 Box(modifier = Modifier.padding(start = 10.dp))
-                                AppTextFieldApp(textValue = playerState, addText = {
+                                AppTextField(textValue = playerState, addText = {
                                     playerState = it
                                 })
                             }

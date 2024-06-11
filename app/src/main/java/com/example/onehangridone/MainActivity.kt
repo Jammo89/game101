@@ -4,18 +4,13 @@ package com.example.onehangridone
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,8 +20,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.onehangridone.ui.theme.OneHangridOneTheme
 import com.example.onehangridone.view.AddPlayer
 import com.example.onehangridone.view.AppTextField
@@ -39,18 +37,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             OneHangridOneTheme {
 
-               // val listP = listOf<String>("Миша", "Юля", "Рустик", "Наташа", "Диана")
 
                 val listPlayer = remember {
                     mutableListOf<String>()
                 }
 
-                var playerState by remember {
+                var count by remember {
+                    mutableStateOf(0)
+                }
+
+                var playerNameState by remember {
                     mutableStateOf("")
                 }
 
 
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -65,7 +66,9 @@ class MainActivity : ComponentActivity() {
 
                             LazyColumn101(
                                 listPlayer = listPlayer,
-                               // countPlayer = countPlayer
+                                count = count,
+                                calculateCount = {}
+
                             )
 
 
@@ -79,16 +82,27 @@ class MainActivity : ComponentActivity() {
                             ) {
 
 
-                                AddPlayer(
-                                    addPlayer = {
-                                        listPlayer.add(playerState)
-                                        playerState = ""
+                                if (listPlayer.size <= 5){
+                                    AddPlayer(
+                                        text = "Добавить игрока",
+                                        addPlayer = {
+                                            listPlayer.add(playerNameState)
+                                            playerNameState = ""
+                                        }
+                                    )
+                                    Box(modifier = Modifier.padding(start = 10.dp))
+                                    AppTextField(textValue = playerNameState, addText = {
+                                        playerNameState = it
+                                    })
+                                }else{
+                                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
+
+                                        Text(text = "Игра началась!!!", fontSize = 22.sp, fontWeight = FontWeight.Medium)
                                     }
-                                )
-                                Box(modifier = Modifier.padding(start = 10.dp))
-                                AppTextField(textValue = playerState, addText = {
-                                    playerState = it
-                                })
+
+                                }
+
+                             
                             }
                         }
                     }
@@ -99,25 +113,4 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@Composable
-fun AccountСalc(
-    countClick: Int,
-    click: Boolean,
-    textValue: String
 
-) {
-
-    var text = textValue
-
-    if (click == false) {
-        countClick
-    } else {
-        TextField(value = textValue, onValueChange = {
-            text = it
-        })
-
-
-    }
-
-
-}

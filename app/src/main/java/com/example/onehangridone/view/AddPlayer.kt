@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AddPlayer(
+    text: String,
     addPlayer: () -> Unit
 ) {
 
@@ -22,7 +23,7 @@ fun AddPlayer(
             .height(64.dp)
             .width(150.dp)
     ) {
-        Text(text = "Добавить игрока", textAlign = TextAlign.Center)
+        Text(text = text, textAlign = TextAlign.Center)
 
     }
 }

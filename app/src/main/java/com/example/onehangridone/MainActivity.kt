@@ -29,6 +29,7 @@ import com.example.onehangridone.ui.theme.OneHangridOneTheme
 import com.example.onehangridone.view.AddPlayer
 import com.example.onehangridone.view.AppTextField
 import com.example.onehangridone.view.LazyColumn101
+import com.example.onehangridone.view.calculator.CalculatorView
 import com.example.onehangridone.viewes.HeaderApp
 
 class MainActivity : ComponentActivity() {
@@ -67,7 +68,9 @@ class MainActivity : ComponentActivity() {
                             LazyColumn101(
                                 listPlayer = listPlayer,
                                 count = count,
-                                calculateCount = {}
+                                calculateCount = {
+
+                                }
 
                             )
 
@@ -101,9 +104,22 @@ class MainActivity : ComponentActivity() {
                                     }
 
                                 }
-
                              
                             }
+                            Box(contentAlignment = Alignment.Center){
+
+                              for (i in listPlayer){
+                                  if (i != null){
+                                      CalculatorView(text = "", namePlayer = i)
+                                  }
+                                  else{
+                                      CalculatorView(text = "", namePlayer = "")
+                                  }
+                              }
+
+
+                            }
+
                         }
                     }
                 }
@@ -111,6 +127,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 
 

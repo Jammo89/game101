@@ -25,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.onehangridone.navigation.Navigation
+import com.example.onehangridone.screens.CreateGame
 import com.example.onehangridone.ui.theme.OneHangridOneTheme
 import com.example.onehangridone.view.AddPlayer
 import com.example.onehangridone.view.AppTextField
@@ -37,92 +39,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             OneHangridOneTheme {
+                  Navigation()
 
-
-                val listPlayer = remember {
-                    mutableListOf<String>()
-                }
-
-                var count by remember {
-                    mutableStateOf(0)
-                }
-
-                var playerNameState by remember {
-                    mutableStateOf("")
-                }
-
-
-
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-
-
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Column {
-
-                            HeaderApp()
-
-
-                            LazyColumn101(
-                                listPlayer = listPlayer,
-                                count = count,
-                                calculateCount = {
-
-                                }
-
-                            )
-
-
-                            Row(
-                                modifier = Modifier.padding(
-                                    start = 20.dp,
-                                    end = 20.dp,
-                                    bottom = 20.dp
-                                ),
-                                horizontalArrangement = Arrangement.Center
-                            ) {
-
-
-                                if (listPlayer.size <= 5){
-                                    AddPlayer(
-                                        text = "Добавить игрока",
-                                        addPlayer = {
-                                            listPlayer.add(playerNameState)
-                                            playerNameState = ""
-                                        }
-                                    )
-                                    Box(modifier = Modifier.padding(start = 10.dp))
-                                    AppTextField(textValue = playerNameState, addText = {
-                                        playerNameState = it
-                                    })
-                                }else{
-                                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-
-                                        Text(text = "Игра началась!!!", fontSize = 22.sp, fontWeight = FontWeight.Medium)
-                                    }
-
-                                }
-                             
-                            }
-                            Box(contentAlignment = Alignment.Center){
-
-                              for (i in listPlayer){
-                                  if (i != null){
-                                      CalculatorView(text = "", namePlayer = i)
-                                  }
-                                  else{
-                                      CalculatorView(text = "", namePlayer = "")
-                                  }
-                              }
-
-
-                            }
-
-                        }
-                    }
-                }
             }
         }
     }

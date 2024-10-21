@@ -1,0 +1,16 @@
+CREATE TABLE Gamer
+(
+Id SERIAL PRIMARY KEY,
+Name varchar(30) UNIQUE ,
+Count INTEGER, 
+Rating INTEGER
+);
+
+
+INSERT INTO Gamer (Name, Count, Rating ) values ('Bob', 0, 0);
+
+
+UPDATE Gamer SET name = 'Миша', count = 1 where id =4;
+
+
+delete from Gamer where id = $1"

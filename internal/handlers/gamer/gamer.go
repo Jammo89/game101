@@ -44,19 +44,23 @@ func Get_all(w http.ResponseWriter, req *http.Request) {
 
 // GET ONE GEMER
 
-func Get_one_gamer(w http.ResponseWriter, req *http.Request) {
+// func Get_one_gamer(w http.ResponseWriter, req *http.Request) {
 
-	db := postgresql.ConectPSQL()
+// 	db := postgresql.ConectPSQL()
+// 	id, err := strconv.Atoi(req.URL.Query().Get("id"))
+// 	if err != nil || id < 1 {
+// 		http.NotFound(w, req)
+// 		return
+// 	}
 
-	var id int
-	gamer, err := db.Query("SELECT * FROM gamer WHERE id = $1", id)
-	if err != nil {
-		log.Println(err)
-	}
+// 	gamer, err := db.Query("SELECT * FROM gamer WHERE id = $1", id)
+// 	if err != nil {
+// 		log.Println(err)
+// 	}
 
-	json.NewEncoder(w).Encode(gamer)
+// 	json.NewEncoder(w).Encode(gamer)
 
-}
+// }
 
 // CREATE GAMER
 
